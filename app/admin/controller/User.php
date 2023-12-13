@@ -95,6 +95,8 @@ class User extends BaseController
         return Db::name("user")->replace()->limit(100)->insertAll($data);
     }
 
+    //todo 2023年12月13日 16:55:12 13
+
     //自定义路由
     public function read($id)
     {
