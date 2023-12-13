@@ -17,8 +17,6 @@ ThinkPHP 8.0
 
 [完全开发手册](https://doc.thinkphp.cn)
 
-## 服务
-
 ThinkPHP生态服务由[顶想云](https://www.topthink.com)（TOPThink Cloud）提供，为生态提供专业的开发者服务和价值之选。
 
 ## 安装
