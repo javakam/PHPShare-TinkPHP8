@@ -8,16 +8,17 @@ ThinkPHP 8.0
 * 依赖`think-orm`3.0版本
 * `6.0`/`6.1`无缝升级
 
-
 > ThinkPHP8.0的运行环境要求PHP8.0.0+
 
 现在开始，你可以使用官方提供的[ThinkChat](https://chat.topthink.com/)，让你在学习ThinkPHP的旅途中享受私人AI助理服务！
 
 ## 文档
 
-[完全开发手册](https://doc.thinkphp.cn)
+完全开发手册: https://doc.thinkphp.cn
 
-ThinkPHP生态服务由[顶想云](https://www.topthink.com)（TOPThink Cloud）提供，为生态提供专业的开发者服务和价值之选。
+命名规范: `ThinkPHP`遵循PSR-2命名规范和PSR-4自动加载规范。
+
+云生态: ThinkPHP生态服务由[顶想云](https://www.topthink.com)（TOPThink Cloud）提供，为生态提供专业的开发者服务和价值之选。
 
 ## 安装
 
@@ -39,10 +40,7 @@ http://localhost:8000
 ~~~
 
 如果需要更新框架使用
+
 ~~~
 composer update topthink/framework
 ~~~
-
-## 命名规范
-
-`ThinkPHP`遵循PSR-2命名规范和PSR-4自动加载规范。
