@@ -41,7 +41,6 @@ class User extends BaseController
         可见 chunk 底层是通过 LIMIT 控制批处理数量的, 因此 chunk 不能直接用于前端访问, 会导致超时!
          */
 
-
         //游标查询 - 另一种大数据处理方式
         $users = Db::name("user")->cursor();
         foreach ($users as $user) {
@@ -49,7 +48,8 @@ class User extends BaseController
         }
     }
 
-    //添加 insert/strict/replace/insertGetId/insertAll/insertAll+limit
+    //新增
+    //insert/strict/replace/insertGetId/insertAll/insertAll+limit
     public function add()
     {
         $data = [
@@ -92,10 +92,68 @@ class User extends BaseController
         ];
         //return Db::name("user")->insertAll($data);//成功返回影响行数, 插入了两条数据就返回2
         //添加数量大时,通过limit控制每次写入最多100条
-        return Db::name("user")->replace()->limit(100)->insertAll($data);
+
+        //REPLACE INTO `tp_user` (`id` , `name` , `age` , `gender` , `detail`) VALUES ( 9,'酒神',17,'男','好酒' ) , ( 10,'石头',16,'女','真硬' )
+        return Db::name("user")->replace()->limit(100)->insertAll($data);//没有数据是返回2,插入过一次再次插入为replace
     }
 
-    //todo 2023年12月13日 16:55:12 13
+    //更新
+    //update+where主键/update+$data包含主键/exp/inc/dec/setInc/setDec/raw/save
+    public function update()
+    {
+        //1. 要修改的数据字段
+//        $data = [
+//            "detail" => "好酒update " . date('Y年m月d日 H:i:s')
+//        ];
+//        return Db::name("user")->where("id", 9)->update($data);
+
+        //2. 此时不需要加 where("id", 9)
+//        $data = [
+//            "id" => 9,
+//            "detail" => "好酒update222 " . date('Y年m月d日 H:i:s')
+//        ];
+//        return Db::name("user")->update($data);
+
+        //3. update同时需要执行SQL函数操作 如:让detail字段内的英文显示大写
+        //return Db::name("user")->where("id",9)->exp("detail", "UPPER(detail)")->update();
+
+        //4. inc 增 ; dec 减 ; setInc("age", 2, 600) setDec()
+        //return Db::name("user")->where("id", 9)->inc("age", 2)->dec("age", 3)->update();
+
+        //5. raw 设置某个字段的特殊需求
+        //UPDATE `tp_user` SET `detail` = UPPER(detail) , `age` = age -2 WHERE `id` = 9
+//        return Db::name("user")->where("id", 9)->update([
+//            "detail" => Db::raw("UPPER(detail)"),
+//            "age" => Db::raw("age -2")
+//        ]);
+
+        //6. save 两种处理流程: 1.$data中有主键, 执行修改操作; 2.否则, 新增
+        $data = [
+            "id" => 9,
+            "detail" => "好酒 update save " . date('Y年m月d日 H:i:s')
+        ];
+        return Db::name("user")->save($data);
+    }
+
+    //删除
+    public function delete()
+    {
+        //1. 根据主键删除
+        //return Db::name("user")->delete(10);
+
+        //2. 根据主键删除多条
+        //return Db::name("user")->delete([9, 10]);
+
+        //3. 正常情况, 使用 where 来删除
+        return Db::name("user")->where("id", 9)->delete();
+    }
+
+    //查询
+    //todo 2023年12月14日 16:41:29 14
+    public function query()
+    {
+
+    }
 
     //自定义路由
     public function read($id)
