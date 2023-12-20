@@ -141,7 +141,7 @@ class User extends BaseController
         //1. 根据主键删除
         //return Db::name("user")->delete(10);
 
-        //2. 根据主键删除多条
+        //2. 根据主键删除多条0
         //return Db::name("user")->delete([9, 10]);
 
         //3. 正常情况, 使用 where 来删除
@@ -149,10 +149,33 @@ class User extends BaseController
     }
 
     //查询
-    //todo 2023年12月14日 16:41:29 14
+    //使用 whereLike whereIn 等效率更高
     public function query()
     {
+        $user = Db::name("user")->where("name", "王五")->select();
+        $user = Db::name("user")->where("id", ">", 5)->select();
 
+        //SELECT * FROM `tp_user` WHERE `name` LIKE '王%'
+        //SELECT * FROM `tp_user` WHERE `name` NOT LIKE '王%'
+        $user = Db::name("user")->where("name", "like", "王%")->select();
+        $user = Db::name("user")->whereLike("name", "王%")->select();
+        $user = Db::name("user")->whereNotLike("name", "王%")->select();
+
+        //whereIn  whereNotIn
+        //SELECT * FROM `tp_user` WHERE `id` IN (1,3)
+        $user = Db::name("user")->where("id", "in", [1, 3])->select();
+
+        //null ; not null
+        //SELECT * FROM `tp_user` WHERE `detail` IS NULL
+        $user = Db::name("user")->where("detail", "null")->select();
+        //$user = Db::name("user")->where("detail", "not null")->select();
+
+        //exp whereExp
+        //SELECT * FROM `tp_user` WHERE ( `id` < 8 and `id` > 3 )
+        $user = Db::name("user")->where("id", "exp", " < 8 and `id` > 3")->select();
+        $user = Db::name("user")->whereExp("id", " < 8 and `id` > 3")->select();
+        //return json($user);
+        return $user;
     }
 
     //自定义路由
