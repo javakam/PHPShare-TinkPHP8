@@ -174,6 +174,35 @@ class User extends BaseController
         //SELECT * FROM `tp_user` WHERE ( `id` < 8 and `id` > 3 )
         $user = Db::name("user")->where("id", "exp", " < 8 and `id` > 3")->select();
         $user = Db::name("user")->whereExp("id", " < 8 and `id` > 3")->select();
+        $user = Db::name("user")->field("id,name")->whereExp("id", " < 8 and `id` > 3")->select();
+
+        //SELECT COUNT(`detail`) AS think_count FROM `tp_user`
+        $user = Db::name("user")->count("detail");//max min avg sum ...
+        //return json($user);
+        return $user;
+    }
+
+    //关联查询
+    public function link()
+    {
+        //1. 常规写法
+        $user = Db::name("user")->where("age", ">", 14)
+            ->where("gender", "男")// "=" 可以省略
+            ->select();
+
+        //2.索引数组方式
+        //SELECT * FROM `tp_user` WHERE `age` > 14 AND `gender` = '男'
+        $user = Db::name("user")->where([
+            ["age", ">", 14],
+            ["gender", "=", "男"]
+        ])
+            ->select();
+
+        //3."="关系, 可以直接使用关联数组, 一维
+        //todo 2023年12月29日 11:24:01  16  03:33
+
+
+        //return Db::getLastSql();
         //return json($user);
         return $user;
     }
