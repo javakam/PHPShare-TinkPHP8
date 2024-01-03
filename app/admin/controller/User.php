@@ -190,21 +190,36 @@ class User extends BaseController
             ->where("gender", "男")// "=" 可以省略
             ->select();
 
-        //2.索引数组方式
+        //2.索引数组方式, 二维数组
         //SELECT * FROM `tp_user` WHERE `age` > 14 AND `gender` = '男'
         $user = Db::name("user")->where([
             ["age", ">", 14],
             ["gender", "=", "男"]
-        ])
-            ->select();
+        ])->select();
 
-        //3."="关系, 可以直接使用关联数组, 一维
-        //todo 2023年12月29日 11:24:01  16  03:33
+        //3.关联数组, 一维数组。 "="关系, 可以直接使用
+        //SELECT * FROM `tp_user` WHERE `age` = 14 AND `gender` = '男'
+        $user = Db::name("user")->where([
+            "age" => 14,
+            "gender" => "男"
+        ])->select();
 
+        //4.搜索条件独立管理, 这里=号写全
+        //SELECT * FROM `tp_user` WHERE `age` > 14 AND `gender` = '男'
+        $map[] = ["age", ">", 14];
+        $map[] = ["gender", "=", "男"];
+        $user = Db::name("user")->where($map)->select();
 
         //return Db::getLastSql();
         //return json($user);
         return $user;
+    }
+
+    //todo 2024年1月3日 11:14:03  17 数据库 ; 31 路由
+    //拼装的高级查询
+    public function adv()
+    {
+
     }
 
     //自定义路由
