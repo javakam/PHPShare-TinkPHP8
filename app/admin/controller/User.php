@@ -208,6 +208,7 @@ class User extends BaseController
         //SELECT * FROM `tp_user` WHERE `age` > 14 AND `gender` = '男'
         $map[] = ["age", ">", 14];
         $map[] = ["gender", "=", "男"];
+        //dump($map);
         $user = Db::name("user")->where($map)->select();
 
         //return Db::getLastSql();
