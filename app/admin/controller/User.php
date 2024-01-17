@@ -223,7 +223,7 @@ class User extends BaseController
 
     }
 
-    //自定义路由
+    //自定义路由00
     public function read($id)
     {
         return 'uid = ' . $id;
