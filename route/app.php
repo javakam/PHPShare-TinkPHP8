@@ -14,6 +14,7 @@ Route::get('think', function () {
     return 'hello,ThinkPHP6!';
 });
 
+//http://tp.com/admin/index/hello/aaa  ->   http://tp.com/hello/aaa
 Route::get('hello/:name', 'index/hello');
 
 //自定义路径
