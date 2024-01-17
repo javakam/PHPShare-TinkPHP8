@@ -229,8 +229,8 @@ class User extends BaseController
         return 'uid = ' . $id;
     }
 
-    public function hello()
+    public function hello($str = 'sss')
     {
-        return 'hello user';
+        return 'hello user: ' . $str;
     }
 }

@@ -14,7 +14,7 @@ class Index extends BaseController
 	// http://tp.com/index.php/admin/Index/hello
     public function hello($name = 'ThinkPHP8')
     {
-        return 'hello,admin' . $name;
+        return 'hello,admin ' . $name;
     }
 	
 	// http://tp.com/admin/Index/test

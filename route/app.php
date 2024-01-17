@@ -24,7 +24,7 @@ Route::get('hello/:name', 'index/hello');
 
 //http://tp.com/admin/user/read?id=123   -> http://tp.com/user/123
 Route::rule('user/:id', 'app\admin\controller\User@read')->app('admin');
-//http://tp.com/admin/user/hello   ->  http://tp.com/hello
-Route::rule('hello', 'app\admin\controller\User@hello')->app('admin');
+//http://tp.com/admin/user/hello   ->  http://tp.com/hello2
+Route::rule('hello2/:str', 'app\admin\controller\User@hello')->app('admin');
 //http://tp.com/admin/redis/redis   ->  redis
 Route::rule('redis', 'app\admin\controller\Redis@redis');
