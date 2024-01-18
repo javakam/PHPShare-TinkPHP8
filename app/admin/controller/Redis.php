@@ -17,7 +17,7 @@ class Redis
 
     //插入: Cache::store('redis')->set('name', '小明', 3600);
     //读取: $value = Cache::store('redis')->get('name');
-    //判断是否存在: $has = Cache::store('redis')->has('name'); 存在返回1,不存在
+    //判断是否存在: $has = Cache::store('redis')->has('name'); 存在返回1,不存在返回0
     //删除: Cache::store('redis')->rm('name');
     //自增: Cache::store('redis')->inc('num');
     //自减: Cache::store('redis')->dec('num');
