@@ -5,16 +5,14 @@ ThinkPHP 8.0
 
 现在开始，你可以使用官方提供的[ThinkChat](https://chat.topthink.com/)，让你在学习ThinkPHP的旅途中享受私人AI助理服务！
 
-## 文档
-
 完全开发手册: https://doc.thinkphp.cn
 
 ## 配置
 
-`php.ini` 必须的扩展
+`php.ini` 必需的扩展
 
 ~~~properties
-extension_dir = "ext" 
+extension_dir="ext"
 extension=php_zip
 extension=php_pdo_mysql
 extension=php_fileinfo
