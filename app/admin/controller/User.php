@@ -216,9 +216,63 @@ class User extends BaseController
         return $user;
     }
 
-    //todo 2024年1月3日 11:14:03  17 数据库 ; 31 路由 6:00
-    //拼装的高级查询
+    //[重点]拼装高级查询
     public function adv()
+    {
+        //SELECT * FROM `tp_user` WHERE ( `name` LIKE '%王%' OR `detail` LIKE '%王%' ) AND ( `id` > 0 AND `createtime` > '0' )
+        $user = Db::name("user")->where("name|detail", "like", "%王%")
+            ->where("id&createtime", ">", 0)
+            ->select();
+
+        //SELECT * FROM `tp_user` WHERE `age` > 14 AND `detail` LIKE '%我%'
+        $user = Db::name("user")->where([
+            ["age", ">", 14],
+            ["detail", "like", "%我%"],
+        ])->select();
+
+        //SELECT * FROM `tp_user` WHERE `gender` = '男' AND ( `age` >=15 and id<5 ) AND `detail` LIKE '%我%'
+        //条件字符串复杂拼装: Db::raw(">=15 and id<5")
+        $user = Db::name("user")->where([
+            ["gender", "=", "男"],
+            ["age", "exp", Db::raw(">=15 and id<5")],
+        ])
+            ->where("detail", "like", "%我%")
+            ->select();
+
+        //推荐用变量代替, SQL语句同上
+        /*
+        注: $map[] 和 $map 是有区别的。
+        $map[] 是一个数组变量，在使用时会将值附加到数组的末尾;
+        $map 则是一个普通的变量名，可以用来存储任何类型的数据，比如字符串、整数等。
+         */
+        //SELECT * FROM `tp_user` WHERE `gender` = '男' AND ( `age` >=15 and id<5 ) AND `detail` LIKE '%我%'
+        $map = [
+            ["gender", "=", "男"],
+            ["age", "exp", Db::raw(">=15 and id<5")],
+        ];
+        $map[] = ["detail", "like", "%我%"];//而不是: $map = ["detail", "like", "%我%"];
+        $user = Db::name("user")->where($map)->select();
+
+        //如果, 条件中多次出现一个字段, 并且需要 OR 来左右筛选, 可以用 whereOr
+        $map1 = [
+            ["name", "like", "%王%"],
+            ["detail", "=", null]
+            ,];
+        $map2 = [
+            ["gender", "=", "女"],
+            ["detail", "exp", Db::raw("is not null")]
+        ];
+        //SELECT * FROM `tp_user` WHERE ( `name` LIKE '%王%' AND `detail` IS NULL ) OR ( `gender` = '女' AND ( `detail` is not null ) )
+        $user = Db::name("user")->whereOr([$map1, $map2])->select();
+
+        //return Db::getLastSql();
+        //return json($user);
+        return $user;
+    }
+
+    //todo 2024年1月18日 15:41:25 18 数据库 ; 31 路由 6:00
+    //模型的定义方式
+    public function xxx()
     {
 
     }

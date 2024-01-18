@@ -11,7 +11,7 @@
 use think\facade\Route;
 
 Route::get('think', function () {
-    return 'hello,ThinkPHP6!';
+    return 'hello,ThinkPHP8!';
 });
 
 //http://tp.com/admin/index/hello/aaa  ->   http://tp.com/hello/aaa
