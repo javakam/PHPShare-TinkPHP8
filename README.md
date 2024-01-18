@@ -14,7 +14,8 @@ ThinkPHP 8.0
 `php.ini` 必须的扩展
 
 ~~~properties
-extension_dir="ext"
+extension_dir = "ext" 
+extension=php_zip
 extension=php_pdo_mysql
 extension=php_fileinfo
 extension=php_curl
