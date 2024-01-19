@@ -1,11 +1,9 @@
-ThinkPHP 8.0
+ThinkPHP 8.0 Study
 ===============
 
 > ThinkPHP8.0的运行环境要求PHP8.0.0+
 
-现在开始，你可以使用官方提供的[ThinkChat](https://chat.topthink.com/)，让你在学习ThinkPHP的旅途中享受私人AI助理服务！
-
-完全开发手册: https://doc.thinkphp.cn
+> 开发手册: https://doc.thinkphp.cn
 
 ## 配置
 

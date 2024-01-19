@@ -5,7 +5,7 @@ namespace app\admin\controller;
 use app\BaseController;
 use think\facade\Db;
 
-class User extends BaseController
+class UserBak extends BaseController
 {
     //获取
     public function get()
@@ -270,12 +270,10 @@ class User extends BaseController
         return $user;
     }
 
-    //todo 2024年1月18日 15:41:25 18 数据库 ; 31 路由 6:00
+    //todo 2024年1月18日 15:41:25  31 路由 6:00
     //模型的定义方式
-    public function xxx()
-    {
-
-    }
+    //@see \app\model\User
+    //@see \app\controller\TestUser
 
     //自定义路由00
     public function read($id)
