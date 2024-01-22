@@ -8,11 +8,11 @@ create table tp_user
     age        tinyint unsigned default 0        null,
     gender     char(6)          default '男'     null,
     detail     varchar(200)                      null,
-    createtime datetime                          null
+    create_time datetime                          null
 );
 
 
-insert into func.tp_user (id, name, age, gender, detail, createtime)
+insert into func.tp_user (id, name, age, gender, detail, create_time)
 values  (1, '张三', 15, '男', '我是张三！', null),
         (2, '李四', 14, '女', null, null),
         (3, '王五', 12, '男', null, null),

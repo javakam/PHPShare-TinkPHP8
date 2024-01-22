@@ -219,9 +219,9 @@ class UserBak extends BaseController
     //[重点]拼装高级查询
     public function adv()
     {
-        //SELECT * FROM `tp_user` WHERE ( `name` LIKE '%王%' OR `detail` LIKE '%王%' ) AND ( `id` > 0 AND `createtime` > '0' )
+        //SELECT * FROM `tp_user` WHERE ( `name` LIKE '%王%' OR `detail` LIKE '%王%' ) AND ( `id` > 0 AND `create_time` > '0' )
         $user = Db::name("user")->where("name|detail", "like", "%王%")
-            ->where("id&createtime", ">", 0)
+            ->where("id&create_time", ">", 0)
             ->select();
 
         //SELECT * FROM `tp_user` WHERE `age` > 14 AND `detail` LIKE '%我%'

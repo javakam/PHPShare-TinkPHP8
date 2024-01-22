@@ -28,7 +28,16 @@ class Redis
     //获取多个: $value = Cache::store('redis')->getMultiple(['name', 'age']);
     //删除多个: Cache::store('redis')->rmMultiple(['name', 'age']);
     //清空缓存: Cache::store('redis')->clear();
-    //push:  Cache::store('redis')->
+
+    //获取有序集合中指定范围内的成员: Cache::store('redis')->range('name', 1, -1);
+    //获取范围内的元素: Cache::store('redis')->lrange('name', 1, -1);
+    //移除列表中的元素: Cache::store('redis')->lrem('name', 1, '小明');
+    //修改指定位置的元素: Cache::store('redis')->lset('name', 0, '小明');
+    //保留指定范围内的元素, 同时删除其它元素: Cache::store('redis')->ltrim('name', 0, 1);
+    //向列表头部添加元素: Cache::store('redis')->lpush('name', '小明');
+    //在指定元素之前插入新元素: Cache::store('redis')->linsert('name', 'before', '小明', '小明');
+    //在指定元素之前插入新元素: Cache::store('redis')->linsert('name', 'after', '小明', '小明');
+    //获取指定位置的元素值: Cache::store('redis')->lindex('name', 0);
     public function redis()
     {
         $redis = Cache::store('redis');

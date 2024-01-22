@@ -61,7 +61,4 @@ class User extends Model
     {
         //echo "初始化!";
     }
-
-    //todo 2024年1月19日 14:44:26  19 模型的新增和删除
-
 }
